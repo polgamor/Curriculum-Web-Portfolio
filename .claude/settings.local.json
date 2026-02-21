@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc:*)",
+      "Bash(npx react-scripts build)",
+      "Bash(curl:*)",
+      "Bash(npm start)",
+      "Bash(npm install:*)"
+    ]
+  }
+}

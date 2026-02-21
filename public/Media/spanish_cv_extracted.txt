@@ -1,0 +1,62 @@
+
+
+Pol García Moreno
+Desarrollador de Software | Especialista en IA y Big Data (En formación)
+Barcelona, España  |  +34 633 297 540  |  polgarciamoreno392@gmail.com
+LinkedIn: linkedin.com/in/pol-garcía-moreno
+GitHub: github.com/polgamor
+Carnet de conducir: B (Vehículo propio)
+Perfil Personal
+Desarrollador de software orientado al detalle con una base sólida en desarrollo Full-stack y móvil (Flutter/Dart/React)
+y desarrollo web (JavaScript/CSS/Wordpress).  Actualmente especializándome en Inteligencia Artificial y Big
+Data para conectar el rendimiento de las aplicaciones con insights basados en datos. Experiencia internacional
+demostrada mediante una beca Erasmus+ en Malta,  entregando soluciones escalables en entornos ágiles y
+multiculturales.
+Habilidades Técnicas
+•   Móvil y Frontend: Flutter, Dart, JavaScript (ES6+), HTML5, CSS3, Optimización UI/UX.
+•   Backend y Lenguajes: Java, Python (Pandas/NumPy), C#, PHP, SQL (MySQL, PostgreSQL).
+•   Datos y Cloud: Supabase, Firebase, Gestión de Bases de Datos, Fundamentos de Big Data.
+•   Herramientas y Plataformas: Git, WordPress (Avanzado), Unity, Agile/Scrum, Amazon Marketplace.
+•   Idiomas: Inglés (Competencia profesional), Español (Nativo), Catalán (Nativo).
+Experiencia Profesional
+Jun 2024 – Sept 2024: Desarrollador de Software (Beca Erasmus+)
+Geosys | Malta
+•   Desarrollo integral de una aplicación móvil de turismo multiplataforma utilizando Flutter y Dart para una
+empresa de Big Data.
+•   Optimización de la recuperación de datos y gestión de usuarios mediante la implementación de Supabase,
+mejorando la fluidez de la aplicación.
+•   Colaboración en un entorno multicultural, utilizando el inglés como idioma principal para la documentación
+técnica y reuniones diarias.
+Mar 2022 – Jun 2022: Desarrollador Frontend (Prácticas)
+Timtul (Startup de Diseño Web) | España
+•   Desarrollo e implementación de componentes de UI responsivos para un CMS propio utilizando CSS3 y JavaScript.
+•   Reducción de errores en el frontend en un 15% mediante pruebas rigurosas y diseño de componentes mod-
+ulares.
+•   Aplicación de metodologías Agile/Scrum para cumplir con los objetivos de sprint quincenales.
+Jun 2020 – Sept 2021: Asistente de Operaciones Digitales y E-Commerce
+Grupo Lambea | España
+•   Gestión de flujos de trabajo de comercio electrónico, incluyendo ajustes de UI en WordPress/WooCommerce
+y automatización de catálogos.
+•   Optimización de listados en Amazon Marketplace, mejorando los tiempos de respuesta al cliente y el seguimiento
+de ventas.
+2024 – Actualidad: Tutor de Informática y Programación
+Clases Particulares
+•   Mentoría a estudiantes de CFGM en Sistemas Microinformáticos y Redes (SMX), simplificando conceptos com-
+plejos de algoritmia y redes en módulos de aprendizaje prácticos.
+Formación Académica
+2024 – En curso: Máster de Especialización en Inteligencia Artificial y Big Data
+Jesuïtes Clot, Barcelona
+2024 – 2025: CFGS Desarrollo de Aplicaciones Multiplataforma (DAM)
+1
+
+Jesuïtes Clot, Barcelona
+2021 – 2022: CFGS Desarrollo de Aplicaciones Web (DAW)
+Jesuïtes Clot, Barcelona
+2019 – 2021: CFGS Administración de Sistemas Informáticos en Red (ASIR)
+Jesuïtes Clot, Barcelona
+Experiencia Profesional Adicional
+Oct 2023 – Ene 2024: Auxiliar de Almacén (Campaña de Navidad)
+MediaMarkt | España
+Gestión de inventario de alto volumen bajo estrictos acuerdos de nivel de servicio (SLA), demostrando resilien-
+cia y capacidad de trabajo en entornos de alta presión.
+2

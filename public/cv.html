@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pol García Moreno - Full Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .tech-card {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s forwards;
+        }
+        
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 9px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 5px;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+        }
+        
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(59, 130, 246, 0.6);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+        }
+        
+        .section-gradient {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+        }
+        
+        .tech-primary {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+        
+        .tech-secondary {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+        
+        .tech-mobile {
+            background: linear-gradient(135deg, #10b981, #047857);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+        
+        .tech-bigdata {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+        }
+        
+        .lang-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 50;
+        }
+        
+        .content-section {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .scroll-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .scroll-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Floating Particles -->
+    <div class="floating-particles" id="particles"></div>
+
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button onclick="toggleLanguage()" class="glass px-4 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-all duration-300">
+            <span id="langToggle">EN</span>
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient min-h-screen flex items-center justify-center relative content-section">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-8">
+                <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1">
+                    <div class="w-full h-full bg-gray-900 rounded-full flex items-center justify-center">
+                        <i class="fas fa-code text-4xl text-blue-400"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-bold mb-4">
+                <span class="gradient-text">Pol García Moreno</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-300 mb-8" id="heroTitle">
+                Full Stack Developer | AI & Big Data Specialist
+            </p>
+            
+            <div class="flex justify-center gap-4 mb-8">
+                <a href="mailto:polgarciamoreno392@gmail.com" class="glass px-6 py-3 rounded-lg hover:bg-white/10 transition-all duration-300">
+                    <i class="fas fa-envelope mr-2"></i> <span data-es="Contactar" data-en="Contact">Contact</span>
+                </a>
+                <a href="https://linkedin.com/in/pol-garcía-moreno-1ab3a9205" target="_blank" class="glass px-6 py-3 rounded-lg hover:bg-white/10 transition-all duration-300">
+                    <i class="fab fa-linkedin mr-2"></i> LinkedIn
+                </a>
+                <a href="#" class="glass px-6 py-3 rounded-lg hover:bg-white/10 transition-all duration-300">
+                    <i class="fab fa-github mr-2"></i> GitHub
+                </a>
+            </div>
+            
+            <div class="text-gray-400">
+                <i class="fas fa-map-marker-alt mr-2"></i> <span data-es="Barcelona, España" data-en="Barcelona, Spain">Barcelona, Spain</span>
+                <span class="mx-2">|</span>
+                <i class="fas fa-phone mr-2"></i> +34 633297540
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-2xl text-gray-400"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section-gradient py-20 content-section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text" data-es="Sobre Mí" data-en="About Me">About Me</h2>
+            <div class="max-w-3xl mx-auto glass p-8 rounded-2xl">
+                <p class="text-lg text-gray-300 leading-relaxed" id="aboutText">
+                    Apasionado estudiante de programación especializado en desarrollo de aplicaciones, actualmente buscando empleo a tiempo completo mientras continúo con mis estudios. Mi rutina deportiva ha fortalecido mi disciplina y perseverancia, cualidades que aplico en todos los proyectos.
+                </p>
+                
+                <div class="mt-6 flex flex-wrap gap-4">
+                    <span class="px-4 py-2 bg-blue-500/20 rounded-full text-sm">
+                        <i class="fas fa-language mr-2"></i> <span data-es="Español Nativo" data-en="Spanish Native">Spanish Native</span>
+                    </span>
+                    <span class="px-4 py-2 bg-green-500/20 rounded-full text-sm">
+                        <i class="fas fa-language mr-2"></i> <span data-es="Catalán Nativo" data-en="Catalan Native">Catalan Native</span>
+                    </span>
+                    <span class="px-4 py-2 bg-purple-500/20 rounded-full text-sm">
+                        <i class="fas fa-language mr-2"></i> <span data-es="Inglés Fluido" data-en="English Fluent">English Fluent</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Grid -->
+    <section class="section-gradient py-20 content-section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text" data-es="Tecnologías" data-en="Tech Stack">Tech Stack</h2>
+            
+            <!-- Primary Technologies -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-semibold mb-6 text-center text-blue-400" data-es="Tecnologías Principales" data-en="Primary Technologies">Primary Technologies</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="tech-card glass p-6 rounded-xl text-center tech-primary">
+                        <i class="fab fa-react text-4xl mb-3"></i>
+                        <h4 class="font-semibold">React</h4>
+                    </div>
+                    <div class="tech-card glass p-6 rounded-xl text-center tech-mobile">
+                        <i class="fab fa-android text-4xl mb-3"></i>
+                        <h4 class="font-semibold">Flutter</h4>
+                    </div>
+                    <div class="tech-card glass p-6 rounded-xl text-center tech-primary">
+                        <i class="fab fa-js text-4xl mb-3"></i>
+                        <h4 class="font-semibold">JavaScript</h4>
+                    </div>
+                    <div class="tech-card glass p-6 rounded-xl text-center tech-bigdata">
+                        <i class="fas fa-brain text-4xl mb-3"></i>
+                        <h4 class="font-semibold">Machine Learning</h4>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Secondary Technologies -->
+            <div>
+                <h3 class="text-2xl font-semibold mb-6 text-center text-purple-400" data-es="Tecnologías Secundarias" data-en="Secondary Technologies">Secondary Technologies</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="tech-card glass p-6 rounded-xl text-center tech-secondary">
+                        <i class="fab fa-unity text-4xl mb-3"></i>
+                        <h4 class="font-semibold">Unity</h4>
+                    </div>
+                    <div class="tech-card glass p-6 rounded-xl text-center tech-secondary">
+                        <i class="fab fa-wordpress text-4xl mb-3"></i>
+                        <h4 class="font-semibold">WordPress</h4>
+                    </div>
+                    <div class="tech-card glass p-6 rounded-xl text-center">
+                        <i class="fab fa-python text-4xl mb-3"></i>
+                        <h4 class="font-semibold">Python</h4>
+                    </div>
+                    <div class="tech-card glass p-6 rounded-xl text-center">
+                        <i class="fab fa-java text-4xl mb-3"></i>
+                        <h4 class="font-semibold">Java</h4>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Skills -->
+            <div class="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div class="glass px-4 py-2 rounded-lg text-center text-sm">HTML/CSS</div>
+                <div class="glass px-4 py-2 rounded-lg text-center text-sm">MySQL</div>
+                <div class="glass px-4 py-2 rounded-lg text-center text-sm">Firebase</div>
+                <div class="glass px-4 py-2 rounded-lg text-center text-sm">Supabase</div>
+                <div class="glass px-4 py-2 rounded-lg text-center text-sm">Dart</div>
+                <div class="glass px-4 py-2 rounded-lg text-center text-sm">Big Data</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section class="section-gradient py-20 content-section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text" data-es="Experiencia" data-en="Experience">Experience</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="timeline-line"></div>
+                
+                <div class="timeline-item mb-8">
+                    <div class="timeline-dot"></div>
+                    <div class="glass p-6 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-400">Erasmus Internship - Geosys (Malta)</h3>
+                        <p class="text-sm text-gray-400 mb-2">Jun 2024 – Sept 2024</p>
+                        <p class="text-gray-300" data-es="Desarrollo de app turística con Flutter y Dart, gestión de base de datos con Supabase en entorno multinacional." data-en="Developed tourism app with Flutter and Dart, database management with Supabase in multicultural environment.">
+                            Developed tourism app with Flutter and Dart, database management with Supabase in multicultural environment.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item mb-8">
+                    <div class="timeline-dot"></div>
+                    <div class="glass p-6 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-2">Computer Science Tutor</h3>
+                        <p class="text-sm text-gray-400 mb-2">2024 – Present</p>
+                        <p class="text-gray-300" data-es="Clases particulares de programación y ciencias de la computación para estudiantes CFGM en SMX." data-en="Private programming and computer science lessons for CFGM students in Microcomputer Systems and Networks (SMX).">
+                            Private programming and computer science lessons for CFGM students in Microcomputer Systems and Networks (SMX).
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item mb-8">
+                    <div class="timeline-dot"></div>
+                    <div class="glass p-6 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-2">Frontend Internship - Timtul</h3>
+                        <p class="text-sm text-gray-400 mb-2">Mar 2022 – Jun 2022</p>
+                        <p class="text-gray-300" data-es="Desarrollo de interfaces web con CSS3 y JavaScript, implementación de componentes UI en CMS propio." data-en="Web interface development with CSS3 and JavaScript, implementation of UI components in in-house CMS.">
+                            Web interface development with CSS3 and JavaScript, implementation of UI components in in-house CMS.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item mb-8">
+                    <div class="timeline-dot"></div>
+                    <div class="glass p-6 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-2">Digital Operations - Grupo Lambea</h3>
+                        <p class="text-sm text-gray-400 mb-2">Jun 2020 – Sept 2020 & Jun 2021 – Sept 2021</p>
+                        <p class="text-gray-300" data-es="Gestión de sitio web con WordPress, redes sociales corporativas, desarrollo y soporte en Amazon Marketplace." data-en="Website management with WordPress, corporate social media, development and Amazon Marketplace support.">
+                            Website management with WordPress, corporate social media, development and Amazon Marketplace support.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section-gradient py-20 content-section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text" data-es="Educación" data-en="Education">Education</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="glass p-6 rounded-xl hover:transform hover:scale-105 transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-brain text-3xl text-purple-400 mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold">Master in AI & Big Data</h3>
+                            <p class="text-sm text-gray-400">Jesüites Clot</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300" data-es="Actualmente cursando" data-en="Currently studying">Currently studying</p>
+                </div>
+                
+                <div class="glass p-6 rounded-xl hover:transform hover:scale-105 transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-gamepad text-3xl text-green-400 mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold">Videogame Development</h3>
+                            <p class="text-sm text-gray-400">UPF Tecnocampus Mataró</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300">Sept 2022 – Jun 2024</p>
+                </div>
+                
+                <div class="glass p-6 rounded-xl hover:transform hover:scale-105 transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-mobile-alt text-3xl text-blue-400 mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold">Multiplatform App Dev</h3>
+                            <p class="text-sm text-gray-400">CFGS DAM</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300">Sept 2024 – Jun 2025</p>
+                </div>
+                
+                <div class="glass p-6 rounded-xl hover:transform hover:scale-105 transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-globe text-3xl text-indigo-400 mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold">Web Application Dev</h3>
+                            <p class="text-sm text-gray-400">CFGS DAW</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300">Sept 2021 – Jun 2022</p>
+                </div>
+                
+                <div class="glass p-6 rounded-xl hover:transform hover:scale-105 transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-network-wired text-3xl text-orange-400 mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold">Network Systems Admin</h3>
+                            <p class="text-sm text-gray-400">CFGS ASIR</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300">Sept 2019 – Jun 2021</p>
+                </div>
+                
+                <div class="glass p-6 rounded-xl hover:transform hover:scale-105 transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-certificate text-3xl text-yellow-400 mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold">AI & Big Data Spec</h3>
+                            <p class="text-sm text-gray-400">Specialization Course</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300" data-es="Actualmente cursando" data-en="Currently studying">Currently studying</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="hero-gradient py-20 content-section">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-12 gradient-text" data-es="Contacto" data-en="Contact">Contact</h2>
+            
+            <div class="max-w-2xl mx-auto glass p-8 rounded-2xl">
+                <div class="grid md:grid-cols-2 gap-6 text-left">
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope text-2xl text-blue-400 mr-4"></i>
+                        <div>
+                            <p class="text-sm text-gray-400" data-es="Email" data-en="Email">Email</p>
+                            <p class="font-medium">polgarciamoreno392@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <i class="fas fa-phone text-2xl text-green-400 mr-4"></i>
+                        <div>
+                            <p class="text-sm text-gray-400" data-es="Teléfono" data-en="Phone">Phone</p>
+                            <p class="font-medium">+34 633297540</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <i class="fas fa-map-marker-alt text-2xl text-purple-400 mr-4"></i>
+                        <div>
+                            <p class="text-sm text-gray-400" data-es="Ubicación" data-en="Location">Location</p>
+                            <p class="font-medium">Barcelona, Spain</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <i class="fab fa-linkedin text-2xl text-blue-500 mr-4"></i>
+                        <div>
+                            <p class="text-sm text-gray-400">LinkedIn</p>
+                            <p class="font-medium">pol-garcía-moreno-1ab3a9205</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8">
+                    <button onclick="window.open('mailto:polgarciamoreno392@gmail.com')" class="bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-3 rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-paper-plane mr-2"></i> <span data-es="Enviar Mensaje" data-en="Send Message">Send Message</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Initialize particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Language toggle
+        let currentLang = 'es';
+        
+        function toggleLanguage() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            document.getElementById('langToggle').textContent = currentLang === 'es' ? 'EN' : 'ES';
+            document.documentElement.lang = currentLang;
+            
+            // Update all elements with translation attributes
+            document.querySelectorAll('[data-es][data-en]').forEach(element => {
+                element.textContent = element.getAttribute('data-' + currentLang);
+            });
+        }
+
+        // Scroll animations
+        function handleScroll() {
+            document.querySelectorAll('.scroll-fade-in').forEach(element => {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            handleScroll();
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', handleScroll);
+            
+            // Add smooth scroll behavior
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-gradient');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>

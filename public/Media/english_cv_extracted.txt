@@ -1,0 +1,59 @@
+
+
+Pol García Moreno
+Software Developer | AI & Big Data Specialist in Training
+Barcelona, Spain  |  +34 633 297 540  |  polgarciamoreno392@gmail.com
+LinkedIn: linkedin.com/in/pol-garcía-moreno-1ab3a9205
+GitHub: github.com/polgamor
+Driving License: Category B (Own Vehicle)
+Personal Profile
+Detail-oriented Software Developer with a strong foundation in Full-stack and Mobile development (Flutter/Dart).
+Currently specializing in Artificial Intelligence and Big Data to bridge the gap between application performance
+and data-driven insights. Proven international experience through an Erasmus+ internship in Malta, delivering
+scalable solutions in agile, multicultural environments.
+Technical Skills
+•   Mobile & Frontend: Flutter, Dart, JavaScript (ES6+), HTML5, CSS3, UI/UX Optimization.
+•   Backend & Languages: Java, Python (Pandas/NumPy), C#, PHP, SQL (MySQL, PostgreSQL).
+•   Data & Cloud: Supabase, Firebase, Database Management, Big Data Fundamentals.
+•   Tools & Platforms: Git, WordPress (Advanced), Unity, Agile/Scrum, Amazon Marketplace.
+•   Languages: English (Professional Working Proficiency), Spanish (Native), Catalan (Native).
+Experience
+Jun 2024 – Sept 2024: Software Developer Intern (Erasmus+)
+Geosys | Malta
+•   Engineered a cross-platform tourism application using Flutter and Dart for a Big Data-focused firm.
+•   Optimized data retrieval and user management by implementing Supabase, improving app responsiveness.
+•   Collaborated in a multicultural environment, utilizing English as the primary language for technical docu-
+mentation.
+Mar 2022 – Jun 2022: Frontend Developer Intern
+Timtul (Web Design Startup) | Spain
+•   Developed and deployed responsive UI components for a proprietary CMS using CSS3 and JavaScript.
+•   Reduced frontend bugs by 15% through rigorous testing and modular component design.
+•   Applied Agile/Scrum methodologies to meet bi-weekly sprint deadlines.
+Jun 2020 – Sept 2021: Digital Operations & E-Commerce Assistant
+Grupo Lambea | Spain
+•   Managed e-commerce workflows, including WordPress/WooCommerce adjustments and catalog automa-
+tion.
+•   Optimized Amazon Marketplace listings, resulting in improved customer service response times and sales
+tracking.
+2024 – Present: Computer Science Tutor
+Private Mentoring
+•   Mentoring students in Microcomputer Systems and Networks (SMX), translating complex algorithmic con-
+cepts into simplified, actionable learning modules.
+Education
+2024 – Ongoing: Master in Artificial Intelligence and Big Data
+Jesuïtes Clot, Barcelona
+Advanced specialization in machine learning, data processing, and predictive analytics.
+2024 – 2025: Higher Degree (CFGS) in Multiplatform App Development (DAM)
+Jesuïtes Clot, Barcelona
+2021 – 2022: Higher Degree (CFGS) in Web App Development (DAW)
+Jesuïtes Clot, Barcelona
+1
+
+2019 – 2021: Higher Degree (CFGS) in Systems Administration and Networks (ASIR)
+Jesuïtes Clot, Barcelona
+Additional Professional Experience
+Oct 2023 – Jan 2024: Warehouse Assistant (Christmas Campaign)
+MediaMarkt | Spain
+Handled high-volume inventory management during peak seasons,  demonstrating resilience and ability to
+work under strict SLAs in fast-paced environments.
+2
