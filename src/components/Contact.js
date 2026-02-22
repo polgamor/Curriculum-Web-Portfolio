@@ -1,9 +1,14 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
-import { useTranslation } from '../LanguageContext';
-import emailjs from '@emailjs/browser';
+import { Send, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
+import useTranslation from '../hooks/useTranslation';
+import { contactDetails, socialLinks } from '../data/contact';
+import { sendEmail } from '../utils/emailService';
+import { fadeUpContainer, fadeUpItem } from '../utils/animations';
+
+const containerVariants = fadeUpContainer();
+const itemVariants = fadeUpItem();
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -19,44 +24,11 @@ const Contact = () => {
   });
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.9]
-      }
-    }
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
-    const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
-
-    if (!serviceId || !templateId || !publicKey) {
-      setStatus('error');
-      return;
-    }
-
     setStatus('sending');
 
-    emailjs.sendForm(serviceId, templateId, formRef.current, publicKey)
+    sendEmail(formRef.current)
       .then(() => {
         setStatus('sent');
         setFormData({ name: '', email: '', message: '' });
@@ -74,27 +46,6 @@ const Contact = () => {
       [e.target.name]: e.target.value
     });
   };
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: t('contact.email'),
-      value: 'polgarciamoreno392@gmail.com',
-      href: 'mailto:polgarciamoreno392@gmail.com'
-    },
-    {
-      icon: Phone,
-      label: t('contact.phone'),
-      value: '+34 633 297 540',
-      href: 'tel:+34633297540'
-    },
-    {
-      icon: MapPin,
-      label: t('contact.location'),
-      value: 'Barcelona, Spain',
-      href: '#'
-    }
-  ];
 
   return (
     <section id="contact" className="py-20 relative">
@@ -128,7 +79,7 @@ const Contact = () => {
               <h3 className="text-2xl font-bold text-white mb-6">{t('contact.getInTouch')}</h3>
 
               <div className="space-y-4">
-                {contactInfo.map((item, index) => {
+                {contactDetails.map((item, index) => {
                   const Icon = item.icon;
                   return (
                     <motion.a
@@ -142,7 +93,7 @@ const Contact = () => {
                         <Icon size={20} />
                       </div>
                       <div>
-                        <div className="text-sm text-gray-500">{item.label}</div>
+                        <div className="text-sm text-gray-500">{t(item.labelKey)}</div>
                         <div className="font-medium">{item.value}</div>
                       </div>
                     </motion.a>
@@ -153,34 +104,23 @@ const Contact = () => {
               <motion.div variants={itemVariants} className="pt-6">
                 <h4 className="text-lg font-semibold text-white mb-4">{t('contact.followMe')}</h4>
                 <div className="flex space-x-4">
-                  <motion.a
-                    href="https://github.com/polgamor"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors"
-                  >
-                    <Github size={18} />
-                  </motion.a>
-                  <motion.a
-                    href="https://linkedin.com/in/pol-garcía-moreno-1ab3a9205"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1, rotate: -5 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors"
-                  >
-                    <Linkedin size={18} />
-                  </motion.a>
-                  <motion.a
-                    href="mailto:polgarciamoreno392@gmail.com"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors"
-                  >
-                    <Mail size={18} />
-                  </motion.a>
+                  {socialLinks.map((link, index) => {
+                    const Icon = link.icon;
+                    return (
+                      <motion.a
+                        key={index}
+                        href={link.href}
+                        target={link.isExternal ? '_blank' : undefined}
+                        rel={link.isExternal ? 'noopener noreferrer' : undefined}
+                        whileHover={{ scale: 1.1, rotate: link.rotate }}
+                        whileTap={{ scale: 0.9 }}
+                        className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors"
+                        title={link.label}
+                      >
+                        <Icon size={18} />
+                      </motion.a>
+                    );
+                  })}
                 </div>
               </motion.div>
             </motion.div>

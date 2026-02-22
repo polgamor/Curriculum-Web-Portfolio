@@ -2,7 +2,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ExternalLink, Github, Play } from 'lucide-react';
-import { useTranslation } from '../LanguageContext';
+import useTranslation from '../hooks/useTranslation';
+import { projects } from '../data/projects';
+import { fadeUpContainer, fadeUpItem } from '../utils/animations';
+
+const containerVariants = fadeUpContainer();
+const itemVariants = fadeUpItem(50);
 
 const Projects = () => {
   const { t } = useTranslation();
@@ -10,41 +15,6 @@ const Projects = () => {
     threshold: 0.1,
     triggerOnce: true
   });
-
-  const projects = [
-    {
-      title: t('projects.tourism.name'),
-      description: t('projects.tourism.description'),
-      image: '/api/placeholder/600/400',
-      technologies: t('projects.tourism.technologies').split(', '),
-      github: 'https://github.com/polgamor',
-      live: '#',
-      featured: true
-    }
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.9]
-      }
-    }
-  };
 
   return (
     <section id="projects" className="py-20 relative">
@@ -77,13 +47,13 @@ const Projects = () => {
                       <div className="text-gray-400">Malta Tourism App</div>
                     </div>
                   </div>
-                  
+
                   {project.featured && (
                     <div className="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold">
                       Featured
                     </div>
                   )}
-                  
+
                   <motion.div
                     initial={{ opacity: 0 }}
                     whileHover={{ opacity: 1 }}
@@ -115,15 +85,19 @@ const Projects = () => {
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
-                  <p className="text-gray-400 mb-4 line-clamp-3">{project.description}</p>
-                  
+                  <h3 className="text-xl font-bold text-white mb-3">
+                    {t(`projects.${project.key}.name`)}
+                  </h3>
+                  <p className="text-gray-400 mb-4 line-clamp-3">
+                    {t(`projects.${project.key}.description`)}
+                  </p>
+
                   <div className="mb-4">
                     <h4 className="text-sm font-semibold text-gray-300 mb-2">
                       {t('projects.tech')}:
                     </h4>
                     <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, i) => (
+                      {t(`projects.${project.key}.technologies`).split(', ').map((tech, i) => (
                         <span key={i} className="skill-tag text-xs">
                           {tech}
                         </span>

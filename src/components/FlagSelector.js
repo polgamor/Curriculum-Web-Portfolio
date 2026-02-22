@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import { useTranslation } from '../LanguageContext';
+import useTranslation from '../hooks/useTranslation';
 
 const languages = {
   en: { name: 'English', abbr: 'EN' },
@@ -34,9 +34,9 @@ const FlagSelector = () => {
         className="flex items-center space-x-2 glass px-4 py-2 rounded-full hover:bg-white/20 transition-all duration-300"
       >
         <span className="text-sm font-bold">{languages[language].abbr}</span>
-        <ChevronDown 
-          size={14} 
-          className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} 
+        <ChevronDown
+          size={14}
+          className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
         />
       </motion.button>
 
@@ -58,8 +58,8 @@ const FlagSelector = () => {
                   setIsOpen(false);
                 }}
                 className={`w-full flex items-center space-x-3 p-2 rounded-xl transition-all duration-200 ${
-                  language === lang 
-                    ? 'bg-primary/20 text-primary' 
+                  language === lang
+                    ? 'bg-primary/20 text-primary'
                     : 'hover:bg-white/10 text-gray-300 hover:text-white'
                 }`}
               >

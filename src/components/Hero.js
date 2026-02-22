@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { User, Briefcase, GraduationCap, FolderOpen, Zap, Mail, Github, Linkedin, MessageCircle } from 'lucide-react';
-import { useTranslation } from '../LanguageContext';
+import useTranslation from '../hooks/useTranslation';
 import OrbitMenu from './OrbitMenu';
 
 const ORBIT_ITEMS = [

@@ -1,21 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { useTranslation } from '../LanguageContext';
+import useTranslation from '../hooks/useTranslation';
+import { navItems } from '../data/nav';
 import FlagSelector from './FlagSelector';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
-
-  const navItems = [
-    { id: 'about', label: 'nav.about' },
-    { id: 'experience', label: 'nav.experience' },
-    { id: 'education', label: 'nav.education' },
-    { id: 'projects', label: 'nav.projects' },
-    { id: 'skills', label: 'nav.skills' },
-    { id: 'contact', label: 'nav.contact' }
-  ];
 
   const handleNavClick = (e, id) => {
     e.preventDefault();

@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUp, Github, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
-import { useTranslation } from '../LanguageContext';
+import { ArrowUp } from 'lucide-react';
+import useTranslation from '../hooks/useTranslation';
+import { contactDetails, socialLinks } from '../data/contact';
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -10,37 +11,6 @@ const Footer = () => {
   };
 
   const currentYear = new Date().getFullYear();
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      value: 'polgarciamoreno392@gmail.com',
-      href: 'mailto:polgarciamoreno392@gmail.com'
-    },
-    {
-      icon: Phone,
-      value: '+34 633 297 540',
-      href: 'tel:+34633297540'
-    },
-    {
-      icon: MapPin,
-      value: 'Barcelona, Spain',
-      href: '#'
-    }
-  ];
-
-  const socialLinks = [
-    {
-      icon: Github,
-      href: 'https://github.com/polgamor',
-      label: 'GitHub'
-    },
-    {
-      icon: Linkedin,
-      href: 'https://linkedin.com/in/pol-garcía-moreno-1ab3a9205',
-      label: 'LinkedIn'
-    }
-  ];
 
   return (
     <footer className="py-12 border-t border-white/10 bg-dark/50">
@@ -63,9 +33,9 @@ const Footer = () => {
                   <motion.a
                     key={index}
                     href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.2, rotate: 5 }}
+                    target={link.isExternal ? '_blank' : undefined}
+                    rel={link.isExternal ? 'noopener noreferrer' : undefined}
+                    whileHover={{ scale: 1.2, rotate: link.rotate }}
                     whileTap={{ scale: 0.9 }}
                     className="text-gray-400 hover:text-white transition-colors duration-200"
                     title={link.label}
@@ -85,7 +55,7 @@ const Footer = () => {
           >
             <h4 className="text-lg font-semibold text-white mb-4">{t('contact.title')}</h4>
             <div className="space-y-3">
-              {contactInfo.map((item, index) => {
+              {contactDetails.map((item, index) => {
                 const Icon = item.icon;
                 return (
                   <motion.a

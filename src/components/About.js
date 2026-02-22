@@ -1,8 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import useTranslation from '../hooks/useTranslation';
+import { coreTechnologies } from '../data/about';
+import { fadeUpContainer, fadeUpItem } from '../utils/animations';
 
-import { useTranslation } from '../LanguageContext';
+const containerVariants = fadeUpContainer();
+const itemVariants = fadeUpItem();
 
 const About = () => {
   const { t } = useTranslation();
@@ -10,29 +14,6 @@ const About = () => {
     threshold: 0.1,
     triggerOnce: true
   });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.9]
-      }
-    }
-  };
 
   return (
     <section id="about" className="py-20 relative">
@@ -67,7 +48,7 @@ const About = () => {
               <p className="text-lg text-gray-300 leading-relaxed">
                 {t('about.description')}
               </p>
-              
+
               <div className="grid grid-cols-2 gap-6">
                 <motion.div
                   variants={itemVariants}
@@ -90,11 +71,8 @@ const About = () => {
               <motion.div variants={itemVariants} className="space-y-3">
                 <h4 className="text-xl font-semibold text-white mb-4">Core Technologies</h4>
                 <div className="flex flex-wrap gap-2">
-                  {['Python (Pandas/NumPy)', 'Flutter', 'Dart', 'JavaScript', 'AI/ML', 'Big Data'].map((tech) => (
-                    <span 
-                      key={tech} 
-                      className="skill-tag"
-                    >
+                  {coreTechnologies.map((tech) => (
+                    <span key={tech} className="skill-tag">
                       {tech}
                     </span>
                   ))}
