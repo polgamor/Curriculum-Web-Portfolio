@@ -1,6 +1,6 @@
 # CVWeb — Portfolio & CV Website
 
-Personal portfolio website for Pol García Moreno, built as a single-page application with React. It showcases professional experience, education, projects, and skills, and includes a contact form and a placeholder AI chat section.
+Personal portfolio website for Pol García Moreno, built as a single-page application with React. It showcases professional experience, education, projects, and skills, and includes a contact form and an AI chat section.
 
 ---
 
@@ -22,32 +22,47 @@ Personal portfolio website for Pol García Moreno, built as a single-page applic
 
 ```
 CVWeb/
-├── public/                  # Static assets served as-is
+├── public/                      # Static assets served as-is
 ├── src/
-│   ├── index.js             # React entry point
-│   ├── App.js               # Root component — composes all sections
-│   ├── App.css              # Global styles and CSS custom properties
-│   ├── index.css            # Tailwind directives and base resets
-│   ├── LanguageContext.js   # Internationalisation (i18n) context & hook
-│   ├── translations.js      # Translation strings (en / es / ca)
-│   └── components/
-│       ├── Navbar.js        # Fixed top navigation bar with mobile menu
-│       ├── FlagSelector.js  # Language switcher (flag buttons)
-│       ├── Hero.js          # Full-screen landing section with OrbitMenu
-│       ├── OrbitMenu.js     # Animated orbital navigation around avatar
-│       ├── ChatSection.js   # AI chat placeholder (UI only, coming soon)
-│       ├── About.js         # Short personal bio section
-│       ├── Experience.js    # Work experience timeline
-│       ├── Education.js     # Academic background
-│       ├── Projects.js      # Portfolio project cards
-│       ├── Skills.js        # Technical skills display
-│       ├── Contact.js       # Contact form (EmailJS) + social links
-│       └── Footer.js        # Page footer
-├── Media/                   # CV and cover letter PDFs (source files)
-├── build/                   # Production build output (git-tracked)
-├── .env.example             # Environment variable template
-├── extract_cv.js            # Node script to extract text from PDF CVs
-├── tailwind.config.js       # Tailwind configuration
+│   ├── index.js                 # React entry point
+│   ├── index.css                # Tailwind directives and base resets
+│   ├── App.js                   # Root component — composes all sections
+│   ├── context/
+│   │   └── LanguageContext.js   # i18n context provider (language state, t(), toggleLanguage)
+│   ├── hooks/
+│   │   └── useTranslation.js    # Hook to consume LanguageContext
+│   ├── data/
+│   │   ├── translations.js      # Translation strings (en / es / ca)
+│   │   ├── about.js             # About section data
+│   │   ├── contact.js           # Contact details and social links
+│   │   ├── education.js         # Education items
+│   │   ├── experience.js        # Work experience items
+│   │   ├── nav.js               # Navigation links
+│   │   ├── projects.js          # Portfolio project data
+│   │   └── skills.js            # Skill categories and items
+│   ├── components/
+│   │   ├── Navbar.js            # Fixed top navigation bar with mobile menu
+│   │   ├── FlagSelector.js      # Language switcher dropdown
+│   │   ├── Hero.js              # Full-screen landing section with OrbitMenu
+│   │   ├── OrbitMenu.js         # Animated orbital navigation around avatar
+│   │   ├── About.js             # Short personal bio section
+│   │   ├── Experience.js        # Work experience timeline
+│   │   ├── Education.js         # Academic background timeline
+│   │   ├── Projects.js          # Portfolio project cards
+│   │   ├── Skills.js            # Technical skills by category
+│   │   ├── Contact.js           # Contact form (EmailJS) + social links
+│   │   ├── ChatSection.js       # AI chat section
+│   │   └── Footer.js            # Page footer
+│   ├── styles/
+│   │   └── global.css           # Global component styles and CSS utilities
+│   └── utils/
+│       ├── animations.js        # Reusable Framer Motion variant factories
+│       └── emailService.js      # EmailJS send wrapper
+├── Media/                       # CV and cover letter PDFs (source files)
+├── build/                       # Production build output (git-tracked)
+├── .env.example                 # Environment variable template
+├── extract_cv.js                # Node script to extract text from PDF CVs
+├── tailwind.config.js           # Tailwind configuration
 └── package.json
 ```
 
@@ -64,25 +79,25 @@ App
     │   └── FlagSelector
     ├── Hero
     │   └── OrbitMenu
-    ├── ChatSection
     ├── About
     ├── Experience
     ├── Education
     ├── Projects
     ├── Skills
     ├── Contact
+    ├── ChatSection
     └── Footer
 ```
 
 ### Internationalisation (i18n)
 
-The site supports **English, Spanish, and Catalan**. The language state lives in `LanguageContext.js`, which exposes:
+The site supports **English, Spanish, and Catalan**. The language state lives in `src/context/LanguageContext.js`, which exposes:
 
 - `language` — current language code (`en` | `es` | `ca`)
 - `setLanguage` / `toggleLanguage` — language changers
-- `t(key)` — translation helper that resolves dot-separated keys against `translations.js`
+- `t(key)` — translation helper that resolves dot-separated keys against `src/data/translations.js`, with automatic fallback to `en` if the active language is missing
 
-Any component that needs translated text imports `useTranslation()` from `LanguageContext.js`.
+Any component that needs translated text imports `useTranslation()` from `src/hooks/useTranslation.js`.
 
 ### Page Layout
 
@@ -91,17 +106,17 @@ The site is a **single scrollable page**. Each section has a corresponding HTML 
 | Section | id |
 |---|---|
 | Hero | `hero` |
-| Chat | `chat` |
 | About | `about` |
 | Experience | `experience` |
 | Education | `education` |
 | Projects | `projects` |
 | Skills | `skills` |
 | Contact | `contact` |
+| Chat | `chat` |
 
 ### Animations
 
-All entry animations are handled by **Framer Motion**. Most components use `motion.div` with `whileInView` + `react-intersection-observer` to trigger animations when the section enters the viewport. The `Hero` section uses a staggered children animation. `OrbitMenu` uses CSS transforms + Framer Motion for the orbit effect.
+All entry animations are handled by **Framer Motion**. Reusable variant factories (`fadeUpContainer`, `fadeUpItem`, `fadeLeftItem`) are defined in `src/utils/animations.js` and instantiated at module scope in each component to avoid unnecessary re-creation on every render. Scroll-triggered animations use `react-intersection-observer`.
 
 ### Contact Form
 
@@ -117,7 +132,7 @@ Copy `.env.example` to `.env` and fill in the values from your EmailJS dashboard
 
 ### AI Chat Section
 
-`ChatSection.js` renders the chat UI shell (input bar, bot avatar, welcome bubble) but the AI model integration is **not yet implemented**. The input is disabled and marked as "coming soon".
+`ChatSection.js` renders a chat UI (input bar, bot avatar, welcome bubble) connected to the Claude API for CV-based Q&A.
 
 ---
 
