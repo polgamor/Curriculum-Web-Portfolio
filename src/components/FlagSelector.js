@@ -33,7 +33,7 @@ const FlagSelector = () => {
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center space-x-2 glass px-4 py-2 rounded-full hover:bg-white/20 transition-all duration-300"
       >
-        <span className="text-sm font-bold">{languages[language].abbr}</span>
+        <span className="text-sm font-bold">{languages[language]?.abbr ?? language.toUpperCase()}</span>
         <ChevronDown
           size={14}
           className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}

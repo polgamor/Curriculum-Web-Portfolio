@@ -79,11 +79,11 @@ const Contact = () => {
               <h3 className="text-2xl font-bold text-white mb-6">{t('contact.getInTouch')}</h3>
 
               <div className="space-y-4">
-                {contactDetails.map((item, index) => {
+                {contactDetails.map((item) => {
                   const Icon = item.icon;
                   return (
                     <motion.a
-                      key={index}
+                      key={item.href}
                       href={item.href}
                       variants={itemVariants}
                       whileHover={{ x: 10 }}
@@ -104,11 +104,11 @@ const Contact = () => {
               <motion.div variants={itemVariants} className="pt-6">
                 <h4 className="text-lg font-semibold text-white mb-4">{t('contact.followMe')}</h4>
                 <div className="flex space-x-4">
-                  {socialLinks.map((link, index) => {
+                  {socialLinks.map((link) => {
                     const Icon = link.icon;
                     return (
                       <motion.a
-                        key={index}
+                        key={link.href}
                         href={link.href}
                         target={link.isExternal ? '_blank' : undefined}
                         rel={link.isExternal ? 'noopener noreferrer' : undefined}

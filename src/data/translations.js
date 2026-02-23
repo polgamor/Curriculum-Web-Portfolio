@@ -66,7 +66,6 @@ export const translations = {
         mobile: "Mobile Development",
         frontend: "Frontend",
         backend: "Backend",
-        data: "Data & Cloud",
         tools: "Tools & Methods"
       },
       list: {
@@ -74,12 +73,12 @@ export const translations = {
         mobile: ["Flutter", "Dart", "Cross-platform Development"],
         frontend: ["JavaScript (ES6+)", "HTML5", "CSS3", "React.js", "UI/UX Optimization"],
         backend: ["Java", "C#", "PHP", "SQL (MySQL, PostgreSQL)"],
-        data: ["Supabase", "Firebase", "Database Management", "Big Data Processing"],
         tools: ["Git", "WordPress (Advanced)", "Unity", "Agile/Scrum", "Version Control"]
       }
     },
     education: {
       title: "Education",
+      current: "Current",
       ai_master: {
         degree: "Master in Artificial Intelligence and Big Data",
         school: "Jesuïtes Clot, Barcelona",
@@ -204,7 +203,6 @@ export const translations = {
         mobile: "Desarrollo Móvil",
         frontend: "Frontend",
         backend: "Backend",
-        data: "Datos & Cloud",
         tools: "Herramientas & Métodos"
       },
       list: {
@@ -212,12 +210,12 @@ export const translations = {
         mobile: ["Flutter", "Dart", "Desarrollo Multiplataforma"],
         frontend: ["JavaScript (ES6+)", "HTML5", "CSS3", "React.js", "Optimización UI/UX"],
         backend: ["Java", "C#", "PHP", "SQL (MySQL, PostgreSQL)"],
-        data: ["Supabase", "Firebase", "Gestión de Bases de Datos", "Procesamiento Big Data"],
         tools: ["Git", "WordPress (Avanzado)", "Unity", "Agile/Scrum", "Control de Versiones"]
       }
     },
     education: {
       title: "Educación",
+      current: "Actual",
       ai_master: {
         degree: "Máster de Especialización en Inteligencia Artificial y Big Data",
         school: "Jesuïtes Clot, Barcelona",
@@ -342,7 +340,6 @@ export const translations = {
         mobile: "Desenvolupament Mòbil",
         frontend: "Frontend",
         backend: "Backend",
-        data: "Dades & Cloud",
         tools: "Eines & Mètodes"
       },
       list: {
@@ -350,12 +347,12 @@ export const translations = {
         mobile: ["Flutter", "Dart", "Desenvolupament Multiplataforma"],
         frontend: ["JavaScript (ES6+)", "HTML5", "CSS3", "React.js", "Optimització UI/UX"],
         backend: ["Java", "C#", "PHP", "SQL (MySQL, PostgreSQL)"],
-        data: ["Supabase", "Firebase", "Gestió de Bases de Dades", "Processament Big Data"],
         tools: ["Git", "WordPress (Avançat)", "Unity", "Agile/Scrum", "Control de Versions"]
       }
     },
     education: {
       title: "Educació",
+      current: "Actual",
       ai_master: {
         degree: "Màster d'Especialització en Intel·ligència Artificial i Big Data",
         school: "Jesuïtes Clot, Barcelona",

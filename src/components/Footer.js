@@ -27,11 +27,11 @@ const Footer = () => {
               AI Engineer & Full Stack Developer specializing in intelligent solutions and innovative web development.
             </p>
             <div className="flex space-x-4">
-              {socialLinks.map((link, index) => {
+              {socialLinks.map((link) => {
                 const Icon = link.icon;
                 return (
                   <motion.a
-                    key={index}
+                    key={link.href}
                     href={link.href}
                     target={link.isExternal ? '_blank' : undefined}
                     rel={link.isExternal ? 'noopener noreferrer' : undefined}
@@ -55,11 +55,11 @@ const Footer = () => {
           >
             <h4 className="text-lg font-semibold text-white mb-4">{t('contact.title')}</h4>
             <div className="space-y-3">
-              {contactDetails.map((item, index) => {
+              {contactDetails.map((item) => {
                 const Icon = item.icon;
                 return (
                   <motion.a
-                    key={index}
+                    key={item.href}
                     href={item.href}
                     whileHover={{ x: 5 }}
                     className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-200 text-sm"

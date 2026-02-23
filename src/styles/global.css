@@ -55,10 +55,6 @@
     @apply text-gray-300 hover:text-white transition-colors duration-200 font-medium;
   }
 
-  .nav-link-active {
-    @apply text-white font-semibold;
-  }
-
   /* ── Components ── */
   .skill-tag {
     @apply glass px-4 py-2 rounded-full text-sm font-medium;
@@ -74,17 +70,6 @@
 
   .project-card {
     @apply glass-dark rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:scale-[1.02];
-  }
-
-  .profile-image {
-    @apply w-32 h-32 rounded-full object-cover border-4 border-primary/30;
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
-    transition: all 0.3s ease;
-  }
-
-  .profile-image:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 40px rgba(59, 130, 246, 0.4);
   }
 
   /* ── Orbital Menu ── */
@@ -170,33 +155,8 @@
     min-height: 80vh;
   }
 
-  .chat-card {
-    @apply glass-dark rounded-2xl overflow-hidden flex flex-col;
-    max-width: 720px;
-    width: 100%;
-    min-height: 60vh;
-  }
-
   .chat-header {
     @apply flex items-center gap-3 px-6 py-4 border-b border-white/10;
-  }
-
-  .chat-messages {
-    @apply flex-1 px-6 py-6 space-y-4 overflow-y-auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(59, 130, 246, 0.2) transparent;
-  }
-
-  .chat-messages::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  .chat-messages::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .chat-messages::-webkit-scrollbar-thumb {
-    @apply bg-primary/20 rounded-full;
   }
 
   .chat-bubble-ai {

@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useMemo } from 'react';
 import { translations } from '../data/translations';
 
 const LanguageContext = createContext();
@@ -9,7 +9,7 @@ export const LanguageProvider = ({ children }) => {
 
   const t = (key) => {
     const keys = key.split('.');
-    let value = translations[language];
+    let value = translations[language] ?? translations.en;
 
     for (const k of keys) {
       value = value?.[k];
@@ -24,8 +24,13 @@ export const LanguageProvider = ({ children }) => {
     setLanguage(languages[nextIndex]);
   };
 
+  const contextValue = useMemo(
+    () => ({ language, languages, setLanguage, t, toggleLanguage }),
+    [language]
+  );
+
   return (
-    <LanguageContext.Provider value={{ language, languages, setLanguage, t, toggleLanguage }}>
+    <LanguageContext.Provider value={contextValue}>
       {children}
     </LanguageContext.Provider>
   );
